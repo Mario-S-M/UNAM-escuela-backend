@@ -1,0 +1,37 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Level {
+  id: ID!
+  name: String!
+  description: String!
+  isCompleted: Boolean!
+  percentaje: Int!
+  qualification: Int!
+  createdAt: String!
+  updatedAt: String!
+  userId: Int!
+}
+
+type Query {
+  levels: [Level!]!
+  level(id: Int!): Level!
+}
+
+type Mutation {
+  createLevel(createLevelInput: CreateLevelInput!): Level!
+  updateLevel(updateLevelInput: UpdateLevelInput!): Level!
+  removeLevel(id: Int!): Level!
+}
+
+input CreateLevelInput {
+  name: String!
+  description: String!
+}
+
+input UpdateLevelInput {
+  name: String
+  description: String
+  id: Int!
+}
