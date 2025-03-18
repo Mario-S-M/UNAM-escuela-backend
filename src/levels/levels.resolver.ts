@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, ID } from '@nestjs/graphql';
 import { LevelsService } from './levels.service';
 import { Level } from './entities/level.entity';
 import { CreateLevelInput, UpdateLevelInput } from './dto/inputs';
@@ -13,22 +13,22 @@ export class LevelsResolver {
   }
 
   @Query(() => [Level], { name: 'levels' })
-  findAll() {
+  findAll(): Promise <Level[]> {
     return this.levelsService.findAll();
   }
 
   @Query(() => Level, { name: 'level' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  findOne(@Args('id', { type: () => ID }) id: string) {
     return this.levelsService.findOne(id);
   }
 
   @Mutation(() => Level)
-  updateLevel(@Args('updateLevelInput') updateLevelInput: UpdateLevelInput) {
+  updateLevel(@Args('updateLevelInput') updateLevelInput: UpdateLevelInput):Promise<Level> {
     return this.levelsService.update(updateLevelInput.id, updateLevelInput);
   }
 
   @Mutation(() => Level)
-  removeLevel(@Args('id', { type: () => Int }) id: number) {
+  removeLevel(@Args('id', { type: () => ID }) id: string):Promise<Level> {
     return this.levelsService.remove(id);
   }
 }

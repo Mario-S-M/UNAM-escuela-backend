@@ -6,6 +6,9 @@ import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin
 import { LevelsModule } from './levels/levels.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ContentsModule } from './contents/contents.module';
+import { ActivitiesModule } from './activities/activities.module';
+import { HomeworksModule } from './homeworks/homeworks.module';
 
 @Module({
   imports: [
@@ -28,6 +31,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       autoLoadEntities: true,
     }),
     LevelsModule,
+    ContentsModule,
+    ActivitiesModule,
+    HomeworksModule,
   ],
   controllers: [],
   providers: [],
