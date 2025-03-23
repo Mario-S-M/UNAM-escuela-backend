@@ -48,6 +48,19 @@ type Homework {
   userId: Int!
 }
 
+type User {
+  id: ID!
+  fullName: String!
+  email: String!
+  roles: [String!]!
+  isActive: Boolean!
+}
+
+type AuthResponse {
+  token: String!
+  user: User!
+}
+
 type Query {
   levels: [Level!]!
   level(id: ID!): Level!
@@ -59,6 +72,9 @@ type Query {
   activity(id: ID!): Activity!
   homeworks: [Homework!]!
   homework(id: Int!): Homework!
+  users: [User!]!
+  user(id: ID!): User!
+  revalidate: AuthResponse!
 }
 
 type Mutation {
@@ -74,6 +90,9 @@ type Mutation {
   createHomework(createHomeworkInput: CreateHomeworkInput!): Homework!
   updateHomework(updateHomeworkInput: UpdateHomeworkInput!): Homework!
   removeHomework(id: Int!): Homework!
+  blockUser(id: ID!): User!
+  signin(signUpInput: SignupInput!): AuthResponse!
+  login(loginInput: LoginInput!): AuthResponse!
 }
 
 input CreateLevelInput {
@@ -126,4 +145,15 @@ input UpdateHomeworkInput {
   """Example field (placeholder)"""
   exampleField: Int
   id: Int!
+}
+
+input SignupInput {
+  email: String!
+  fullName: String!
+  password: String!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
 }
