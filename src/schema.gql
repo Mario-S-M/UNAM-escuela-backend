@@ -54,6 +54,7 @@ type User {
   email: String!
   roles: [String!]!
   isActive: Boolean!
+  lastUpdateBy: User
 }
 
 type AuthResponse {
@@ -72,9 +73,17 @@ type Query {
   activity(id: ID!): Activity!
   homeworks: [Homework!]!
   homework(id: Int!): Homework!
-  users: [User!]!
+  users(roles: [ValidRoles!] = []): [User!]!
   user(id: ID!): User!
   revalidate: AuthResponse!
+}
+
+enum ValidRoles {
+  superUser
+  admin
+  docente
+  alumno
+  mortal
 }
 
 type Mutation {

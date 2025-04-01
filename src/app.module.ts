@@ -11,6 +11,7 @@ import { ActivitiesModule } from './activities/activities.module';
 import { HomeworksModule } from './homeworks/homeworks.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { formatError } from './graphql/format-errors';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { AuthModule } from './auth/auth.module';
       playground: false,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
+      formatError,
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
